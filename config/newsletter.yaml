@@ -1,0 +1,113 @@
+version: 1
+
+newsletter:
+  name: "Daily Financial Adviser Brief"
+  purpose: "A daily decision-support briefing for financial advisers."
+  primary_audience: "financial_advisers"
+  secondary_audiences:
+    - wealth_advisers
+    - investment_professionals
+
+editorial_priorities:
+  primary:
+    - adviser_professional_relevance
+    - client_impact
+    - market_economic_context
+
+  principles:
+    - "Relevance over volume"
+    - "Quality over quantity"
+    - "Client impact over generic news importance"
+    - "Facts over speculation"
+    - "Rules over AI autonomy"
+    - "Auditability over cleverness"
+
+content_limits:
+  target_words: 1800
+  soft_lower_bound_words: 1000
+  hard_max_words: 3000
+
+  target_reading_minutes: 12
+  hard_max_reading_minutes: 15
+  words_per_minute: 200
+
+  soft_lower_bound_is_publication_gate: false
+
+sections:
+  - id: top_stories
+    name: "Top Stories"
+    target_count: 5
+    max_count: 5
+    minimum_count: 0
+    repeat_elsewhere: false
+
+  - id: insurance_insurers
+    name: "Insurance & Insurers"
+    minimum_count: 0
+
+  - id: funds_asset_managers
+    name: "Funds & Asset Managers"
+    minimum_count: 0
+
+  - id: financial_planning_wealth
+    name: "Financial Planning & Wealth"
+    minimum_count: 0
+
+  - id: singapore
+    name: "Singapore"
+    minimum_count: 0
+
+  - id: asia_global_markets
+    name: "Asia & Global Markets"
+    minimum_count: 0
+
+  - id: companies_business
+    name: "Companies & Business"
+    minimum_count: 0
+
+  - id: rates_fx_commodities
+    name: "Rates, FX & Commodities"
+    minimum_count: 0
+
+selection:
+  quality_over_quantity: true
+  artificial_minimum_newsletter_length: false
+  mandatory_section_filling: false
+  mandatory_story_count: false
+
+top_stories:
+  distinct_events_only: true
+  max_per_event_cluster: 1
+
+ai_boundaries:
+  python_controls:
+    - category
+    - tier
+    - tier_weight
+    - source_priority
+    - duplicate_detection
+    - article_clustering
+    - canonical_article_selection
+    - section_eligibility
+    - final_score
+    - ranking
+    - section_allocation
+    - word_count_validation
+    - reading_time_validation
+    - publication_eligibility
+
+  deepseek_controls:
+    - what_happened
+    - why_it_matters
+    - adviser_relevance
+    - client_impact
+    - market_significance
+
+  deepseek_must_not_control:
+    - category
+    - tier
+    - source_priority
+    - duplicate_status
+    - canonical_article
+    - section_assignment
+    - final_publication_eligibility

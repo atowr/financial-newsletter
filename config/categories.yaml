@@ -1,0 +1,94 @@
+version: 1
+
+tiers:
+  tier_1:
+    name: "Adviser-critical"
+    weight: 100
+    categories:
+      - insurance
+      - insurers
+      - fund_houses
+      - asset_managers
+      - financial_planning
+      - wealth_management
+      - adviser_regulation
+      - mas_regulation
+
+  tier_2:
+    name: "Important market context"
+    weight: 70
+    categories:
+      - singapore_economy
+      - singapore_markets
+      - asia_markets
+      - monetary_policy
+      - interest_rates
+      - major_earnings
+      - bonds
+      - fx
+
+  tier_3:
+    name: "General business/economic"
+    weight: 40
+    categories:
+      - global_business
+      - commodities
+      - general_economy
+
+category_definitions:
+  insurance:
+    description: "Insurance products, developments and issues directly relevant to advisers and clients."
+
+  insurers:
+    description: "Insurer-specific developments, results, strategy and operations."
+
+  fund_houses:
+    description: "Fund house developments, products and business activity."
+
+  asset_managers:
+    description: "Asset manager developments, products, strategies and business activity."
+
+  financial_planning:
+    description: "Financial planning developments affecting advisers, planning practices or clients."
+
+  wealth_management:
+    description: "Wealth management developments relevant to advisers and clients."
+
+  adviser_regulation:
+    description: "Regulation and regulatory developments directly affecting financial advisers."
+
+  mas_regulation:
+    description: "Monetary Authority of Singapore regulatory and supervisory developments."
+
+  singapore_economy:
+    description: "Singapore economic developments and indicators."
+
+  singapore_markets:
+    description: "Singapore financial markets and market developments."
+
+  asia_markets:
+    description: "Asian financial markets and developments."
+
+  monetary_policy:
+    description: "Central-bank monetary policy decisions and developments."
+
+  interest_rates:
+    description: "Interest-rate developments and their financial-market implications."
+
+  major_earnings:
+    description: "Material earnings developments from major companies."
+
+  bonds:
+    description: "Bond and fixed-income market developments."
+
+  fx:
+    description: "Foreign-exchange market developments."
+
+  global_business:
+    description: "Major global business developments."
+
+  commodities:
+    description: "Commodity-market developments."
+
+  general_economy:
+    description: "Broader economic developments not covered by a more specific category."

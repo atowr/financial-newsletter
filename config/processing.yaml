@@ -1,0 +1,60 @@
+version: 1
+
+deduplication:
+  enabled: true
+  url_level: true
+  canonical_article_per_cluster: 1
+
+clustering:
+  enabled: true
+  represent_event_once: true
+
+freshness:
+  enabled: true
+  scoring_only: true
+
+classification:
+  category:
+    controlled_by: "python"
+  tier:
+    controlled_by: "python"
+  source_priority:
+    controlled_by: "configuration"
+  duplicate_detection:
+    controlled_by: "python"
+  article_clustering:
+    controlled_by: "python"
+
+ai:
+  provider: "deepseek"
+  retries: 2
+  failure_policy: "mark_failed"
+
+validation:
+  required_ai_fields:
+    - what_happened
+    - why_it_matters
+    - adviser_relevance
+    - client_impact
+    - market_significance
+
+  score_range:
+    minimum: 1
+    maximum: 5
+
+  invalid_story_enters_ranking: false
+
+selection:
+  quality_over_quantity: true
+  no_artificial_story_quota: true
+  no_artificial_section_quota: true
+
+reading_time:
+  words_per_minute: 200
+  hard_max_words: 3000
+  hard_max_minutes: 15
+  overflow_action: "remove_lowest_scoring_eligible_story"
+
+publication:
+  require_validation_pass: true
+  require_reading_time_pass: true

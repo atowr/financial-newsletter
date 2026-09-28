@@ -1,0 +1,28 @@
+version: 1
+source_policy:
+  collection_method: rss
+  scraping_enabled: false
+  source_priority_controlled_by: configuration
+sources:
+- id: cna_business
+  name: CNA Business
+  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6936
+  priority: 90
+  enabled: true
+source_schema:
+  required_fields:
+  - id
+  - name
+  - url
+  - priority
+  - enabled
+  priority:
+    minimum: 1
+    maximum: 100
+canonical_selection:
+  within_duplicate_cluster:
+    primary_key: source_priority
+    secondary_key: published_at
+rules:
+  source_priority_must_not_override_editorial_relevance: true
+  source_must_provide_original_article_url: true
