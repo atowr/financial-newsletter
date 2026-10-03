@@ -26,9 +26,6 @@ sources:
   priority: 90
   enabled: true
 - id: cna_sport
-  name: CNA Sport
-  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10296
-  priority: 90
   enabled: true
 - id: cna_world
   name: CNA World
