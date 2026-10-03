@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Financial Adviser Brief Article",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "source_id",
+    "source_name",
+    "source_priority",
+    "title",
+    "url",
+    "published_at",
+    "summary",
+    "category",
+    "tier",
+    "cluster_id",
+    "is_canonical",
+    "what_happened",
+    "why_it_matters",
+    "adviser_relevance",
+    "client_impact",
+    "market_significance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_priority": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ]
+    },
+    "cluster_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "is_canonical": {
+      "type": "boolean"
+    },
+    "what_happened": {
+      "type": "string",
+      "minLength": 1
+    },
+    "why_it_matters": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adviser_relevance": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "client_impact": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "market_significance": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    }
+  }
+}

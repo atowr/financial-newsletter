@@ -1,0 +1,141 @@
+from datetime import datetime
+from html import escape
+
+
+def _article_html(article):
+    title = escape(str(article["title"]))
+    what_happened = escape(str(article["what_happened"]))
+    why_it_matters = escape(str(article["why_it_matters"]))
+    source_name = escape(str(article["source_name"]))
+    url = escape(str(article["url"]), quote=True)
+
+    return f"""<article class="story">
+<h3 class="story-title">{title}</h3>
+<p>{what_happened} {why_it_matters}</p>
+<div class="story-meta"><span class="source">{source_name}</span><span>·</span><a class="read" href="{url}">Read more</a></div>
+</article>"""
+
+
+def _display_date(generated_at):
+    value = datetime.fromisoformat(str(generated_at))
+    return value.strftime("%A, %-d %B %Y")
+
+
+def _snapshot_html():
+    widgets = [
+        ("FOREXCOM:SPXUSD", "S&P 500"),
+        ("INDEX:STI", "Straits Times Index"),
+        ("INDEX:HSI", "Hang Seng Index"),
+        ("INDEX:000001", "Shanghai Composite"),
+        ("BITSTAMP:BTCUSD", "Bitcoin"),
+        ("TVC:GOLD", "Gold"),
+    ]
+
+    cards = []
+    for symbol, label in widgets:
+        cards.append(
+            f"""<div class="snapshot-card">
+<div class="snapshot-card-title">{label}</div>
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<script src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{{"symbol":"{symbol}","width":"100%","height":180,"locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":false,"autosize":true}}</script>
+</div>
+</div>"""
+        )
+
+    return """<section class="snapshot">
+<div class="snapshot-title">Market Snapshot — Live, as displayed by TradingView</div>
+<div class="snapshot-grid">""" + "".join(cards) + """</div>
+</section>"""
+
+def render_newsletter(newsletter):
+    section_ids = {
+        "Top Stories": "top",
+        "Insurance & Insurers": "insurance",
+        "Funds & Asset Managers": "funds",
+        "Financial Planning & Wealth": "planning",
+        "Singapore": "singapore",
+        "Asia & Global Markets": "asia",
+        "Companies & Business": "companies",
+        "Rates, FX & Commodities": "rates",
+    }
+
+    parts = [
+        "<!DOCTYPE html>",
+        '<html lang="en">',
+        "<head>",
+        '<meta charset="UTF-8">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">',
+        f'<title>{escape(str(newsletter["title"]))}</title>',
+        "<style>body{margin:0;padding:32px 16px;background:#eef1f4;color:#243447;font-family:Montserrat,Arial,sans-serif}.page{width:100%;max-width:980px;margin:0 auto;background:#fff;box-shadow:0 2px 12px rgba(16,38,63,.08)}header{background:#10263f;color:#fff;padding:38px 48px;border-bottom:5px solid #c9a34e}h1{margin:0;font-size:36px;font-weight:800;line-height:1.15}.date{margin-bottom:10px;color:#d8e0e8;font-size:12px}.subtitle{margin-top:12px;color:#d8e0e8;font-size:12px;line-height:1.5}.quicknav{display:flex;flex-wrap:wrap;gap:8px 22px;padding:16px 48px;border-bottom:1px solid #dfe4e9}.quicknav a{color:#10263f;font-size:12px;font-weight:700;text-decoration:none}.snapshot{padding:24px 48px 28px;border-bottom:1px solid #dfe4e9}.snapshot-title{margin-bottom:14px;color:#10263f;font-size:13px;font-weight:800}.snapshot-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.snapshot-card{min-width:0}.snapshot-card-title{margin-bottom:6px;color:#10263f;font-size:10px;font-weight:800}.snapshot-card .tradingview-widget-container{width:100%;overflow:hidden}.snapshot-card .tradingview-widget-container iframe{display:block;width:100%!important;max-width:100%}.tradingview-widget-container{width:100%;overflow:hidden}.tradingview-widget-container__widget{width:100%}.tradingview-widget-container iframe{display:block;width:100%!important;max-width:100%}main{padding:0 48px}.section{padding:30px 0 8px}.section-heading{display:flex;align-items:center;gap:12px}.section-number{font-size:12px;font-weight:800;color:#c9a34e;letter-spacing:.08em}.section-heading h2{margin:0;color:#10263f;font-size:18px;font-weight:800;letter-spacing:.04em}.section-rule{height:2px;margin:10px 0 18px;background:#c9a34e}.story{padding:0 0 22px;margin:0 0 22px;border-bottom:1px solid #e4e8ec}.story:last-child{margin-bottom:0}.story-title{margin:0 0 9px;color:#10263f;font-size:15px;font-weight:800;line-height:1.4}.story p{margin:0;color:#34495e;font-size:13px;line-height:1.65}.story-meta{display:flex;gap:7px;align-items:center;margin-top:11px;font-size:11px}.source{color:#6b7785;font-weight:600}.read{color:#10263f;font-weight:700;text-decoration:none}footer{margin-top:32px;padding:24px 48px;background:#10263f;color:#d8e0e8;font-size:10px;line-height:1.7}footer strong{color:#fff;font-size:11px}@media (max-width:700px){body{padding:16px 10px}.page{max-width:none}header{padding:28px 24px}h1{font-size:28px}.quicknav{padding:14px 24px;gap:8px 16px}.snapshot{padding:20px 24px 24px}main{padding:0 24px}footer{padding:20px 24px}}</style></head>",
+        "<body>",
+        '<div class="page">',
+        '<header>',
+        f'<div class="date">{escape(_display_date(newsletter["generated_at"]))}</div>',
+        f'<h1>{escape(str(newsletter["title"]))}</h1>',
+        '<div class="subtitle">Providing concise, curated market intelligence for financial professionals.</div>',
+        "</header>",
+        '<nav class="quicknav">',
+    ]
+    nav_items = [
+        ("Top Stories", "top"),
+        ("Insurance", "insurance"),
+        ("Funds", "funds"),
+        ("Planning & Wealth", "planning"),
+        ("Singapore", "singapore"),
+        ("Asia & Global", "asia"),
+        ("Companies", "companies"),
+        ("Rates & FX", "rates"),
+    ]
+
+    for label, target in nav_items:
+        parts.append(f'<a href="#{target}">{label}</a>')
+
+    parts.extend([
+        "</nav>",
+        _snapshot_html(),
+        '<main>',
+    ])
+    number = 1
+
+    if newsletter.get("top_stories"):
+        parts.append(
+            '<section class="section" id="top">'
+            '<div class="section-heading">'
+            '<span class="section-number">01</span>'
+            '<h2>TOP STORIES</h2>'
+            '</div>'
+            '<div class="section-rule"></div>'
+        )
+        parts.extend(_article_html(article) for article in newsletter["top_stories"])
+        parts.append("</section>")
+        number = 2
+    for section in newsletter.get("sections", []):
+        name = str(section["name"])
+        target = section_ids.get(name)
+        if not target:
+            continue
+
+        parts.append(
+            f'<section class="section" id="{target}">'
+            f'<div class="section-heading">'
+            f'<span class="section-number">{number:02d}</span>'
+            f'<h2>{escape(name.upper())}</h2>'
+            f'</div>'
+            '<div class="section-rule"></div>'
+        )
+        parts.extend(
+            _article_html(article)
+            for article in section.get("articles", [])
+        )
+        parts.append("</section>")
+        number += 1
+    parts.extend([
+        "</main>",
+        '<footer><strong>Daily Financial Adviser Brief</strong><br>© 2026 Daily Financial Adviser Brief • For professional use only<br>Sources aggregated from major financial news providers</footer>',
+        "</div>",
+        "</body>",
+        "</html>",
+    ])
+
+    return "\n".join(parts)

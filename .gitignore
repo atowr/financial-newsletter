@@ -11,3 +11,10 @@ logs/*
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+# Gate 13 WhatsApp authentication/session state
+whatsapp/auth/
+whatsapp/logs/
+
+runtime/
+config/categories.yaml.bak*

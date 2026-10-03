@@ -92,3 +92,327 @@ category_definitions:
 
   general_economy:
     description: "Broader economic developments not covered by a more specific category."
+
+classification:
+  method: deterministic_rules
+  require_single_category: true
+  unresolved_action: unclassified
+  conflict_resolution: explicit_priority
+
+  categories:
+
+    insurance:
+      priority: 190
+      phrases:
+        - "life insurance"
+        - "health insurance"
+        - "medical insurance"
+        - "travel insurance"
+        - "general insurance"
+        - "property insurance"
+        - "motor insurance"
+        - "car insurance"
+        - "home insurance"
+        - "insurance policy"
+        - "insurance policies"
+        - "insurance coverage"
+        - "insurance premium"
+        - "insurance premiums"
+        - "insurance product"
+        - "insurance products"
+      keywords:
+        - "insurance"
+        - "insured"
+        - "policyholder"
+        - "underwriting"
+        - "claims"
+      exclusions:
+        - "insurer earnings"
+        - "insurer results"
+        - "insurer profit"
+        - "insurer revenue"
+
+    insurers:
+      priority: 180
+      phrases:
+        - "insurance company"
+        - "insurance companies"
+        - "insurer results"
+        - "insurer earnings"
+        - "insurer profit"
+        - "insurer revenue"
+        - "insurer strategy"
+        - "insurer acquisition"
+        - "insurer merger"
+      keywords:
+        - "insurer"
+        - "insurers"
+        - "reinsurance"
+        - "reinsurer"
+        - "reinsurers"
+
+    fund_houses:
+      priority: 170
+      phrases:
+        - "fund house"
+        - "fund houses"
+        - "mutual fund"
+        - "mutual funds"
+        - "unit trust"
+        - "unit trusts"
+      keywords:
+        - "fundhouse"
+      exclusions:
+        - "hedge fund"
+        - "pension fund"
+        - "sovereign wealth fund"
+
+    asset_managers:
+      priority: 160
+      phrases:
+        - "asset manager"
+        - "asset managers"
+        - "asset management"
+        - "asset management firm"
+        - "asset management firms"
+        - "investment manager"
+        - "investment managers"
+      keywords:
+        - "aum"
+        - "assets under management"
+
+    financial_planning:
+      priority: 150
+      phrases:
+        - "financial planning"
+        - "financial planner"
+        - "financial planners"
+        - "retirement planning"
+        - "retirement planning"
+        - "estate planning"
+        - "cash flow planning"
+        - "financial advice"
+      keywords:
+        - "financial planning"
+        - "retirement"
+        - "estate planning"
+
+    wealth_management:
+      priority: 140
+      phrases:
+        - "wealth management"
+        - "wealth manager"
+        - "wealth managers"
+        - "private wealth"
+        - "private banking"
+        - "family office"
+        - "family offices"
+      keywords:
+        - "wealth"
+        - "private bank"
+        - "private banking"
+
+    adviser_regulation:
+      priority: 200
+      phrases:
+        - "financial adviser regulation"
+        - "financial adviser regulations"
+        - "financial advisory regulation"
+        - "financial advisory regulations"
+        - "adviser regulatory"
+        - "adviser licensing"
+        - "adviser conduct"
+        - "adviser requirements"
+      keywords:
+        - "financial adviser"
+        - "financial advisers"
+        - "financial advisory"
+        - "adviser"
+        - "advisers"
+      exclusions:
+        - "monetary policy"
+        - "interest rates"
+
+    mas_regulation:
+      priority: 210
+      phrases:
+        - "monetary authority of singapore regulation"
+      keywords:
+        - "monetary authority of singapore"
+      exclusions:
+        - "monetary policy"
+        - "interest rates"
+
+    singapore_economy:
+      priority: 120
+      phrases:
+        - "singapore economy"
+        - "singapore economic growth"
+        - "singapore gdp"
+        - "singapore inflation"
+        - "singapore unemployment"
+        - "singapore exports"
+        - "singapore imports"
+        - "singapore manufacturing"
+      keywords:
+        - "singapore gdp"
+        - "singapore inflation"
+        - "singapore economy"
+        - "singapore economic"
+
+    singapore_markets:
+      priority: 130
+      phrases:
+        - "singapore stock market"
+        - "singapore stocks"
+        - "singapore shares"
+        - "singapore equities"
+        - "straits times index"
+        - "sti index"
+        - "singapore market"
+      keywords:
+        - "straits times index"
+
+    asia_markets:
+      priority: 110
+      phrases:
+        - "asian markets"
+        - "asia markets"
+        - "asian stocks"
+        - "asian shares"
+        - "asian equities"
+        - "asia-pacific markets"
+        - "asia pacific markets"
+      keywords:
+        - "asian markets"
+        - "asian stocks"
+        - "asian shares"
+        - "asia-pacific"
+
+    monetary_policy:
+      priority: 125
+      phrases:
+        - "monetary policy"
+        - "monetary policy decision"
+        - "monetary policy meeting"
+        - "interest-rate decision"
+        - "interest rate decision"
+        - "central bank decision"
+        - "central bank policy"
+        - "policy rate decision"
+      keywords:
+        - "monetary policy"
+        - "central bank"
+        - "policy rate"
+        - "rate decision"
+
+    interest_rates:
+      priority: 115
+      phrases:
+        - "interest rates"
+        - "interest rate"
+        - "borrowing costs"
+        - "lending rates"
+        - "mortgage rates"
+      keywords:
+        - "interest rates"
+        - "interest rate"
+        - "rate cuts"
+        - "rate hike"
+        - "rate hikes"
+
+    major_earnings:
+      priority: 100
+      phrases:
+        - "quarterly earnings"
+        - "annual earnings"
+        - "earnings results"
+        - "earnings report"
+        - "profit results"
+        - "full-year results"
+        - "quarterly results"
+      keywords:
+        - "earnings"
+        - "profit"
+        - "revenue"
+        - "results"
+      exclusions:
+        - "insurer"
+
+    bonds:
+      priority: 105
+      phrases:
+        - "bond market"
+        - "bond markets"
+        - "government bonds"
+        - "corporate bonds"
+        - "bond yields"
+        - "bond issuance"
+        - "fixed income"
+        - "fixed-income"
+      keywords:
+        - "bonds"
+        - "bond"
+        - "yield curve"
+        - "fixed income"
+
+    fx:
+      priority: 104
+      phrases:
+        - "foreign exchange"
+        - "foreign-exchange"
+        - "currency markets"
+        - "currency market"
+        - "exchange rates"
+        - "singapore dollar"
+        - "us dollar"
+      keywords:
+        - "forex"
+        - "fx"
+        - "currency"
+        - "currencies"
+        - "exchange rate"
+
+    global_business:
+      priority: 60
+      phrases:
+        - "global business"
+        - "global economy"
+        - "business activity"
+        - "corporate sector"
+      keywords:
+        - "company"
+        - "corporate"
+        - "business"
+
+    commodities:
+      priority: 90
+      phrases:
+        - "commodity markets"
+        - "commodity prices"
+        - "oil prices"
+        - "gold prices"
+        - "copper prices"
+        - "natural gas prices"
+      keywords:
+        - "oil"
+        - "gold"
+        - "copper"
+        - "natural gas"
+        - "commodities"
+        - "commodity"
+
+    general_economy:
+      priority: 50
+      phrases:
+        - "global economy"
+        - "economic outlook"
+        - "economic growth"
+        - "economic activity"
+        - "economic data"
+      keywords:
+        - "economy"
+        - "economic"
+        - "inflation"
+        - "growth"
+        - "employment"

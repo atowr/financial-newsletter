@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Daily Financial Adviser Brief Newsletter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "title",
+    "generated_at",
+    "target_reading_time_minutes",
+    "word_count",
+    "reading_time_minutes",
+    "top_stories",
+    "sections"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "target_reading_time_minutes": {
+      "type": "number",
+      "const": 12
+    },
+    "word_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3000
+    },
+    "reading_time_minutes": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "top_stories": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "$ref": "article.json"
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "articles"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "articles": {
+            "type": "array",
+            "items": {
+              "$ref": "article.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,19 +3,115 @@ source_policy:
   collection_method: rss
   scraping_enabled: false
   source_priority_controlled_by: configuration
+
 sources:
+- id: cna_latest
+  name: CNA Latest News
+  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml
+  priority: 90
+  enabled: true
+- id: cna_asia
+  name: CNA Asia
+  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6511
+  priority: 90
+  enabled: true
 - id: cna_business
   name: CNA Business
   url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6936
   priority: 90
   enabled: true
+- id: cna_singapore
+  name: CNA Singapore
+  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416
+  priority: 90
+  enabled: true
+- id: cna_sport
+  name: CNA Sport
+  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10296
+  priority: 90
+  enabled: true
+- id: cna_world
+  name: CNA World
+  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6311
+  priority: 90
+  enabled: true
+- id: cna_insider
+  name: CNA Insider
+  url: https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=11156
+  priority: 90
+  enabled: true
+- id: straits_times_business
+  name: The Straits Times Business
+  url: https://www.straitstimes.com/news/business/rss.xml
+  priority: 90
+  enabled: true
+- id: bt_banking_finance
+  name: Business Times - Banking & Finance
+  url: https://www.businesstimes.com.sg/rss/banking-finance
+  priority: 90
+  enabled: true
+- id: bt_wealth_investing
+  name: Business Times - Wealth & Investing
+  url: https://www.businesstimes.com.sg/rss/wealth-investing
+  priority: 90
+  enabled: true
+- id: bt_personal_finance
+  name: Business Times - Personal Finance
+  url: https://www.businesstimes.com.sg/rss/personal-finance
+  priority: 90
+  enabled: true
+- id: bt_companies_markets
+  name: Business Times - Companies & Markets
+  url: https://www.businesstimes.com.sg/rss/companies-markets
+  priority: 90
+  enabled: true
+- id: bt_capital_markets_currencies
+  name: Business Times - Capital Markets & Currencies
+  url: https://www.businesstimes.com.sg/rss/capital-markets-currencies
+  priority: 90
+  enabled: true
+- id: bt_wealth
+  name: Business Times - Wealth
+  url: https://www.businesstimes.com.sg/rss/wealth
+  priority: 90
+  enabled: true
+- id: marketwatch
+  name: MarketWatch
+  url: https://feeds.content.dowjones.io/public/rss/mw_bulletins
+  priority: 90
+  enabled: true
+- id: bloomberg_markets
+  name: Bloomberg Markets
+  url: https://feeds.bloomberg.com/markets/news.rss
+  priority: 90
+  enabled: true
+- id: bloomberg_economics
+  name: Bloomberg Economics
+  url: https://feeds.bloomberg.com/economics/news.rss
+  priority: 90
+  enabled: true
+- id: bloomberg_technology
+  name: Bloomberg Technology
+  url: https://feeds.bloomberg.com/technology/news.rss
+  priority: 90
+  enabled: true
+- id: bloomberg_politics
+  name: Bloomberg Politics
+  url: https://feeds.bloomberg.com/politics/news.rss
+  priority: 90
+  enabled: true
+- id: bloomberg_business
+  name: Bloomberg Business
+  url: https://feeds.bloomberg.com/business/news.rss
+  priority: 90
+  enabled: true
 source_schema:
   required_fields:
-  - id
-  - name
-  - url
-  - priority
-  - enabled
+    - id
+    - name
+    - url
+    - priority
+    - enabled
   priority:
     minimum: 1
     maximum: 100
