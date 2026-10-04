@@ -79,9 +79,6 @@ def render_newsletter(newsletter):
     ]
     nav_items = [
         ("Top Stories", "top"),
-        ("Insurance", "insurance"),
-        ("Funds", "funds"),
-        ("Planning & Wealth", "planning"),
         ("Singapore", "singapore"),
         ("Asia & Global", "asia"),
         ("Companies", "companies"),

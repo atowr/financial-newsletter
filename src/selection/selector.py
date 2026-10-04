@@ -56,6 +56,18 @@ def _rank_key(article):
     )
 
 
+def is_relevance_eligible(article):
+    """Return whether an article has at least one meaningful relevance signal."""
+    return any(
+        article.get(field, 0) > 1
+        for field in (
+            "adviser_relevance",
+            "client_impact",
+            "market_significance",
+        )
+    )
+
+
 def rank_articles(articles):
     """Return eligible articles in deterministic descending priority order."""
     eligible = [
@@ -64,6 +76,7 @@ def rank_articles(articles):
         if article.get("is_canonical") is True
         and article.get("category") != "unclassified"
         and article.get("final_score") is not None
+        and is_relevance_eligible(article)
     ]
 
     return sorted(eligible, key=_rank_key)
@@ -78,25 +91,38 @@ def section_for_category(category):
     return None
 
 
-def select_top_stories(articles, max_count=5):
-    """Select highest-ranked article from each distinct event cluster."""
+def select_top_stories(articles, max_count=5, source_families=None):
+    """Select cluster-unique top stories with source-family diversity."""
+    ranked = rank_articles(articles)
     selected = []
-    seen_clusters = set()
+    seen = set()
+    used = set()
+    families = source_families or {}
 
-    for article in rank_articles(articles):
-        cluster_id = article["cluster_id"]
-
-        if cluster_id in seen_clusters:
-            continue
-
-        selected.append(article)
-        seen_clusters.add(cluster_id)
-
-        if len(selected) >= max_count:
+    while len(selected) < max_count:
+        candidate = None
+        for article in ranked:
+            if article["cluster_id"] in seen:
+                continue
+            family = families.get(article.get("source_id"),
+                                  article.get("source_id") or article.get("source_name"))
+            if family not in used:
+                candidate = article
+                break
+        if candidate is None:
+            for article in ranked:
+                if article["cluster_id"] not in seen:
+                    candidate = article
+                    break
+        if candidate is None:
             break
+        selected.append(candidate)
+        seen.add(candidate["cluster_id"])
+        family = families.get(candidate.get("source_id"),
+                              candidate.get("source_id") or candidate.get("source_name"))
+        used.add(family)
 
     return selected
-
 
 def allocate_sections(articles, top_stories):
     """Allocate non-Top-Story articles to eligible sections."""

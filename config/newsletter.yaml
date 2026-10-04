@@ -41,18 +41,6 @@ sections:
     minimum_count: 0
     repeat_elsewhere: false
 
-  - id: insurance_insurers
-    name: "Insurance & Insurers"
-    minimum_count: 0
-
-  - id: funds_asset_managers
-    name: "Funds & Asset Managers"
-    minimum_count: 0
-
-  - id: financial_planning_wealth
-    name: "Financial Planning & Wealth"
-    minimum_count: 0
-
   - id: singapore
     name: "Singapore"
     minimum_count: 0

@@ -310,6 +310,17 @@ def main():
 
     raw_articles = load_articles()
 
+    enabled_source_ids = {
+        source["id"]
+        for source in source_config["sources"]
+        if source.get("enabled", True)
+    }
+    raw_articles = [
+        article
+        for article in raw_articles
+        if article["source_id"] in enabled_source_ids
+    ]
+
     singapore_today = run_timestamp.astimezone(
         ZoneInfo("Asia/Singapore")
     ).date()
@@ -350,6 +361,7 @@ def main():
     top_stories = select_top_stories(
         articles,
         max_count=5,
+        source_families=source_config.get("source_families", {}),
     )
 
     sections_map = allocate_sections(
@@ -465,6 +477,7 @@ def main():
     print(
         f"Top stories: {len(top_stories)}"
     )
+    print("Top story source families: " + ", ".join(source_config.get("source_families", {}).get(a.get("source_id"), a.get("source_id") or a.get("source_name")) for a in top_stories))
     print(
         f"Sections: {len(sections)}"
     )
