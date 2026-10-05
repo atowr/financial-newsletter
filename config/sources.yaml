@@ -75,31 +75,6 @@ sources:
   url: https://feeds.content.dowjones.io/public/rss/mw_bulletins
   priority: 90
   enabled: true
-- id: bloomberg_markets
-  name: Bloomberg Markets
-  url: https://feeds.bloomberg.com/markets/news.rss
-  priority: 90
-  enabled: true
-- id: bloomberg_economics
-  name: Bloomberg Economics
-  url: https://feeds.bloomberg.com/economics/news.rss
-  priority: 90
-  enabled: true
-- id: bloomberg_technology
-  name: Bloomberg Technology
-  url: https://feeds.bloomberg.com/technology/news.rss
-  priority: 90
-  enabled: true
-- id: bloomberg_politics
-  name: Bloomberg Politics
-  url: https://feeds.bloomberg.com/politics/news.rss
-  priority: 90
-  enabled: true
-- id: bloomberg_business
-  name: Bloomberg Business
-  url: https://feeds.bloomberg.com/business/news.rss
-  priority: 90
-  enabled: true
 source_families:
   cna_latest: CNA
   cna_asia: CNA
@@ -115,11 +90,6 @@ source_families:
   bt_capital_markets_currencies: Business Times
   bt_wealth: Business Times
   marketwatch: MarketWatch
-  bloomberg_markets: Bloomberg
-  bloomberg_economics: Bloomberg
-  bloomberg_technology: Bloomberg
-  bloomberg_politics: Bloomberg
-  bloomberg_business: Bloomberg
 source_schema:
   required_fields:
     - id
