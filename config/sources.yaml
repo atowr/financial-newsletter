@@ -70,6 +70,11 @@ sources:
   url: https://www.businesstimes.com.sg/rss/wealth
   priority: 90
   enabled: true
+- id: cnbc_finance
+  name: CNBC Finance
+  url: https://www.cnbc.com/id/10000664/device/rss/rss.html
+  priority: 90
+  enabled: true
 - id: marketwatch
   name: MarketWatch
   url: https://feeds.content.dowjones.io/public/rss/mw_bulletins

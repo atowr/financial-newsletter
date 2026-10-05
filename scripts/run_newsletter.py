@@ -16,6 +16,7 @@ from src.classification.classifier import DeterministicClassifier
 from src.collector.rss import collect_feed
 from src.storage.sqlite import connect, insert_article
 from src.processing.enrich_article import ArticleEnricher
+from src.processing.cluster_articles import cluster_articles
 from src.interpretation.validator import (
     validate_interpretation,
     FieldLengthError,
@@ -352,6 +353,8 @@ def main():
 
         if article is not None:
             articles.append(article)
+
+    articles = cluster_articles(articles)
 
     if not articles:
         raise RuntimeError(
