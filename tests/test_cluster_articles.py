@@ -23,3 +23,14 @@ def test_clusters_similar_articles():
     assert result[0]["cluster_id"] == result[1]["cluster_id"]
     assert result[0]["is_canonical"] is False
     assert result[1]["is_canonical"] is True
+
+
+def test_clusters_identical_titles_with_different_summaries():
+    articles = [
+        {'id': 'bt', 'title': 'Saudi Arabia unexpectedly cuts oil prices to Asia', 'summary': 'Saudi Arabia cut its official selling price for oil to Asia, setting it below the average of Oman and Dubai prices.', 'source_priority': 3},
+        {'id': 'st', 'title': 'Saudi Arabia unexpectedly cuts oil prices to Asia', 'summary': 'Saudi Arabia cut its November Arab Light crude oil official selling price to Asia to US a barrel.', 'source_priority': 2},
+    ]
+    result = cluster_articles(articles)
+    assert result[0]['cluster_id'] == result[1]['cluster_id']
+    assert result[0]['is_canonical'] is True
+    assert result[1]['is_canonical'] is False

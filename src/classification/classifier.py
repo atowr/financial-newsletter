@@ -47,7 +47,7 @@ class DeterministicClassifier:
                 phrase.lower() in text
                 for phrase in rule.get("phrases", [])
             ) or any(
-                keyword.lower() in text
+                re.search(r"\b" + re.escape(keyword.lower()) + r"\b", text)
                 for keyword in rule.get("keywords", [])
             )
 

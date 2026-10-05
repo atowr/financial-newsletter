@@ -15,9 +15,11 @@ def cluster_articles(articles: list[dict]) -> list[dict]:
         matched = None
         for cluster in clusters:
             representative = cluster[0]
+            title = _normalize(article.get("title", ""))
+            representative_title = _normalize(representative.get("title", ""))
             title_similarity = _similarity(article.get("title", ""), representative.get("title", ""))
             summary_similarity = _similarity(article.get("summary", ""), representative.get("summary", ""))
-            if title_similarity >= 0.80 and summary_similarity >= 0.70:
+            if (title and title == representative_title) or (title_similarity >= 0.80 and summary_similarity >= 0.70):
                 matched = cluster
                 break
         if matched is None:
