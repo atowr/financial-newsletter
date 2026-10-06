@@ -46,6 +46,10 @@ def _snapshot_html():
     return """<section class="snapshot">
 <div class="snapshot-title">Market Snapshot — Live, as displayed by TradingView</div>
 <div class="snapshot-grid">""" + "".join(cards) + """</div>
+<div class="market-heatmap">
+<div class="snapshot-card-title">Market Heatmap</div>
+<div class="heatmap-links"><a href="https://www.tradingview.com/heatmap/stock/#%7B%22dataSource%22%3A%22SPX500%22%2C%22blockColor%22%3A%22change%22%2C%22blockSize%22%3A%22market_cap_basic%22%2C%22grouping%22%3A%22sector%22%7D">S&amp;P 500 Index</a> · <a href="https://finviz.com/map?t=geo">World Index</a> · <a href="https://finviz.com/map?t=themes">Themes</a> · <a href="https://www.tradingview.com/heatmap/stock/#%7B%22dataSource%22%3A%22AllSGP%22%2C%22blockColor%22%3A%22change%22%2C%22blockSize%22%3A%22market_cap_basic%22%2C%22grouping%22%3A%22sector%22%7D">Singapore Straits Index</a></div>
+</div>
 </section>"""
 
 def render_newsletter(newsletter):
