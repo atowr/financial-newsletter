@@ -75,11 +75,6 @@ sources:
   url: https://www.cnbc.com/id/10000664/device/rss/rss.html
   priority: 90
   enabled: true
-- id: marketwatch
-  name: MarketWatch
-  url: https://feeds.content.dowjones.io/public/rss/mw_bulletins
-  priority: 90
-  enabled: true
 source_families:
   cna_latest: CNA
   cna_asia: CNA
@@ -94,7 +89,6 @@ source_families:
   bt_companies_markets: Business Times
   bt_capital_markets_currencies: Business Times
   bt_wealth: Business Times
-  marketwatch: MarketWatch
 source_schema:
   required_fields:
     - id
