@@ -322,17 +322,16 @@ def main():
         if article["source_id"] in enabled_source_ids
     ]
 
-    singapore_today = run_timestamp.astimezone(
-        ZoneInfo("Asia/Singapore")
-    ).date()
+    window_start = run_timestamp - timedelta(hours=26)
 
     raw_articles = [
         article
         for article in raw_articles
-        if datetime.fromisoformat(
+        if window_start
+        <= datetime.fromisoformat(
             article["published_at"].replace("Z", "+00:00")
-        ).astimezone(ZoneInfo("Asia/Singapore")).date()
-        == singapore_today
+        ).astimezone(ZoneInfo("Asia/Singapore"))
+        <= run_timestamp
     ]
 
     if not raw_articles:
