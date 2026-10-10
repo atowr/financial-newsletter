@@ -322,7 +322,7 @@ def main():
         if article["source_id"] in enabled_source_ids
     ]
 
-    window_start = run_timestamp - timedelta(hours=26)
+    window_start = run_timestamp - timedelta(hours=24)
 
     raw_articles = [
         article
