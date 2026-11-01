@@ -1,8 +1,6 @@
 name: Daily Financial Adviser Brief
 
 on:
-  schedule:
-    - cron: "30 23 * * *"
   workflow_dispatch:
 
 permissions:
